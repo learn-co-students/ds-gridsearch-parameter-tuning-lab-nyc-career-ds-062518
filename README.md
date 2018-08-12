@@ -34,6 +34,10 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.metrics import accuracy_score
 ```
 
+    /anaconda3/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+      "This module will be removed in 0.20.", DeprecationWarning)
+
+
 Now that we've imported all the necessary libraries and frameworks for this lab, we'll need to get the dataset.  
 
 Our data is stored in the file `winequality-red.csv`. Use pandas to import the data from this file and store it in a DataFrame.  Print the head to ensure that everything loaded correctly. 
@@ -97,7 +101,7 @@ dt_clf = None
 dt_cv_score = None
 mean_dt_cv_score = None
 
-print("Mean Cross Validation Score: {:.4}%".format(mean_dt_cv_score * 100))
+# print("Mean Cross Validation Score: {:.4}%".format(mean_dt_cv_score * 100))
 ```
 
 ## Grid Search: Decision Trees
@@ -149,6 +153,9 @@ num_decision_trees = None
 print("Grid Search will have to search through {} different permutations.".format(num_decision_trees))
 ```
 
+    Grid Search will have to search through None different permutations.
+
+
 That's alot of Decision Trees! Decision Trees are generally pretty quick to train, but that isn't the case with every type of model we could want to tune.  Be aware that if you set a particularly large search space of parameters inside your parameter grid, then Grid Searching could potentially take a very long time. 
 
 Let's create our `GridSearchCV` object and fit it.  In the cell below:
@@ -159,7 +166,7 @@ Let's create our `GridSearchCV` object and fit it.  In the cell below:
 
 ```python
 dt_grid_search = None
-dt_grid_search.fit(None, None)
+#dt_grid_search.fit(None, None)
 ```
 
 ### Examining the Best Parameters
@@ -179,10 +186,10 @@ In the cell below:
 dt_gs_training_score = None
 dt_gs_testing_score = None
 
-print("Mean Training Score: {:.4}%".format(dt_gs_training_score * 100))
-print("Mean Testing Score: {:.4}%".format(dt_gs_testing_score * 100))
-print("Best Parameter Combination Found During Grid Search:")
-dt_grid_search.best_params_
+# print("Mean Training Score: {:.4}%".format(dt_gs_training_score * 100))
+# print("Mean Testing Score: {:.4}%".format(dt_gs_testing_score * 100))
+# print("Best Parameter Combination Found During Grid Search:")
+# dt_grid_search.best_params_
 ```
 
 **_Question:_** What effect, if any, did our parameter tuning have on model performance? Will GridSearchCV always discover a perfectly (global) optimal set of parameters? Why or why not?
@@ -203,7 +210,7 @@ In the cell below:
 ```python
 rf_clf = None
 mean_rf_cv_score = None
-print("Mean Cross Validation Score for Random Forest Classifier: {:.4}%".format(mean_rf_cv_score * 100))
+# print("Mean Cross Validation Score for Random Forest Classifier: {:.4}%".format(mean_rf_cv_score * 100))
 ```
 
 Now that we have our baseline score, we'll create a parameter grid specific to our Random Forest Classifier.  
@@ -243,12 +250,12 @@ When creating your `GridSearchCV` object,  pass in:
 import time
 start = time.time()
 rf_grid_search =None
-rf_grid_search.fit(None, None)
+# rf_grid_search.fit(None, None)
 
-print("Testing Accuracy: {:.4}%".format(rf_grid_search.best_score_ * 100))
-print("Total Runtime for Grid Search on Random Forest Classifier: {:.4} seconds".format(time.time() - start))
-print("")
-print("Optimal Parameters: {}".format(rf_grid_search.best_params_))
+# print("Testing Accuracy: {:.4}%".format(rf_grid_search.best_score_ * 100))
+# print("Total Runtime for Grid Search on Random Forest Classifier: {:.4} seconds".format(time.time() - start))
+# print("")
+# print("Optimal Parameters: {}".format(rf_grid_search.best_params_))
 ```
 
 ### Interpreting Our Results
@@ -270,7 +277,7 @@ In the cell below, create an AdaBoost Classifier Object.  Then, as we did with t
 adaboost_clf = None
 adaboost_mean_cv_score = None
 
-print("Mean Cross Validation Score for AdaBoost: {:.4}%".format(adaboost_mean_cv_score * 100))
+# print("Mean Cross Validation Score for AdaBoost: {:.4}%".format(adaboost_mean_cv_score * 100))
 ```
 
 Great! Now, onto creating the parameter grid for AdaBoost.  
@@ -294,12 +301,12 @@ Great.  Now, for the finale--use Grid Search to find optimal parameters for AdaB
 
 ```python
 adaboost_grid_search = None
-adaboost_grid_search.fit(None, None)
+# adaboost_grid_search.fit(None, None)
 
-print("Testing Accuracy: {:.4}%".format(adaboost_grid_search.best_score_ * 100))
-print("Total Runtime for Grid Search on AdaBoost: {:.4} seconds".format(time.time() - start))
-print("")
-print("Optimal Parameters: {}".format(adaboost_grid_search.best_params_))
+# print("Testing Accuracy: {:.4}%".format(adaboost_grid_search.best_score_ * 100))
+# print("Total Runtime for Grid Search on AdaBoost: {:.4} seconds".format(time.time() - start))
+# print("")
+# print("Optimal Parameters: {}".format(adaboost_grid_search.best_params_))
 ```
 
 # Conclusion
