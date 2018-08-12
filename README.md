@@ -34,9 +34,9 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.metrics import accuracy_score
 ```
 
-    C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+    /anaconda3/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
       "This module will be removed in 0.20.", DeprecationWarning)
-    
+
 
 Now that we've imported all the necessary libraries and frameworks for this lab, we'll need to get the dataset.  
 
@@ -339,7 +339,7 @@ plt.show()
 
 
 
-![png](output_5_1.png)
+![png](index_files/index_5_1.png)
 
 
 **_Question:_** Based on your findings during your Eploratory Data Analysis, do you think that we need to do any sort of preprocessing on this dataset? Why or why not?
@@ -509,8 +509,8 @@ mean_dt_cv_score = np.mean(dt_cv_score)
 print("Mean Cross Validation Score: {:.4}%".format(mean_dt_cv_score * 100))
 ```
 
-    Mean Cross Validation Score: 44.84%
-    
+    Mean Cross Validation Score: 45.53%
+
 
 ## Grid Search: Decision Trees
 
@@ -565,7 +565,7 @@ print("Grid Search will have to search through {} different permutations.".forma
 ```
 
     Grid Search will have to search through 648 different permutations.
-    
+
 
 Expected Answer: 648
 
@@ -625,7 +625,7 @@ dt_grid_search.best_params_
     Mean Training Score: 67.15%
     Mean Testing Score: 66.04%
     Best Parameter Combination Found During Grid Search:
-    
+
 
 
 
@@ -633,7 +633,7 @@ dt_grid_search.best_params_
     {'criterion': 'gini',
      'max_depth': 5,
      'min_samples_leaf': 6,
-     'min_samples_split': 2}
+     'min_samples_split': 10}
 
 
 
@@ -659,8 +659,8 @@ mean_rf_cv_score = np.mean(cross_val_score(rf_clf, scaled_df, labels, cv=3))
 print("Mean Cross Validation Score for Random Forest Classifier: {:.4}%".format(mean_rf_cv_score * 100))
 ```
 
-    Mean Cross Validation Score for Random Forest Classifier: 53.73%
-    
+    Mean Cross Validation Score for Random Forest Classifier: 55.36%
+
 
 Now that we have our baseline score, we'll create a parameter grid specific to our Random Forest Classifier.  
 
@@ -712,11 +712,11 @@ print("")
 print("Optimal Parameters: {}".format(rf_grid_search.best_params_))
 ```
 
-    Testing Accuracy: 58.85%
-    Total Runtime for Grid Search on Random Forest Classifier: 42.03 seconds
+    Testing Accuracy: 58.97%
+    Total Runtime for Grid Search on Random Forest Classifier: 36.1 seconds
     
-    Optimal Parameters: {'criterion': 'entropy', 'max_depth': 6, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 30}
-    
+    Optimal Parameters: {'criterion': 'gini', 'max_depth': None, 'min_samples_leaf': 5, 'min_samples_split': 10, 'n_estimators': 100}
+
 
 ### Interpreting Our Results
 
@@ -742,7 +742,7 @@ print("Mean Cross Validation Score for AdaBoost: {:.4}%".format(adaboost_mean_cv
 ```
 
     Mean Cross Validation Score for AdaBoost: 53.03%
-    
+
 
 Great! Now, onto creating the parameter grid for AdaBoost.  
 
@@ -778,7 +778,7 @@ print("Optimal Parameters: {}".format(adaboost_grid_search.best_params_))
     Total Runtime for Grid Search on AdaBoost: 49.89 seconds
     
     Optimal Parameters: {'learning_rate': 0.1, 'n_estimators': 100}
-    
+
 
 # Conclusion
 
